@@ -51,6 +51,7 @@ int main() {
     
         std::cout << "\n\tDeseja retornar ao menu? (S ou n): ";
         std::cin >> repetir;
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Limpa o buffer
         if (repetir != 's' && repetir != 'S' && repetir != 'n' && repetir != 'N')
         {
             err();
@@ -150,7 +151,13 @@ void retirar (double& saldo, std::string unidade)
     }
     else
     {
-        saldo -= valor;
-        std::cout << saldo;
+        if (valor > saldo)
+        {
+            std::cout << "\nSaldo insuficiente...";
+        }
+        else
+        {
+            saldo -= valor;
+        }
     }
 }
